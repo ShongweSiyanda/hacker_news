@@ -17,4 +17,10 @@ use Illuminate\Support\Facades\Route;
     return view('index');
 });*/
 
-Route::get('/','App\Http\Controllers\HomeController@index');
+Route::get('/create-new','App\Http\Controllers\StoriesController@createNewStories');
+Route::get('/create-best','App\Http\Controllers\StoriesController@createBestStories');
+Route::get('/create-top','App\Http\Controllers\StoriesController@createTopStories');
+Route::get('/new','App\Http\Controllers\StoriesController@showNewStories');
+Route::get('/best','App\Http\Controllers\StoriesController@showBestStories');
+Route::get('/top','App\Http\Controllers\StoriesController@showTopStories');
+Route::get('/','App\Http\Controllers\StoriesController@displayAllStories');
