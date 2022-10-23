@@ -15,5 +15,11 @@ class Stories extends Model
         'score',
         'title',
         'category',
+        'url',
+        'comments'
+    ];
+    protected $casts = [
+        'url' => 'array',
+        'comments' => 'array'
     ];
 }
