@@ -1,0 +1,26 @@
+.titleline{
+    color:#000;
+}
+table{
+    background: #f6f6ef;
+    width:100%;
+    padding-top: 1rem;
+}
+.subtext {
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: 7pt;
+    color: #828282;
+}
+
+.title {
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: 10pt;
+    color: #828282;
+    overflow: hidden;
+}
+.spacer{
+    height:10px
+}
+.spacer-top,.spacer-bottom{
+    height:15px;
+}
