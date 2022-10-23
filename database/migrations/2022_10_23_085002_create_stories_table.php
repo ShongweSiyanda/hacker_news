@@ -21,6 +21,8 @@ return new class extends Migration
             $table->integer('score');
             $table->text('title');
             $table->text('category')->nullable();
+            $table->text('url');
+            $table->text('comments')->nullable();
             $table->timestamps();
         });
     }
