@@ -30,6 +30,15 @@
 
                                 by <a class="hnuser">{{$chuck['by']}}</a>
                                 <span class="age" title="{{$chuck['time']}}"><a>{{$chuck['time']}}</a></span>
+                                @if($chuck['comments'])
+                                        @if(count($chuck['comments']) === 1)
+                                            &nbsp;|&nbsp;<span class="comments_{{$chuck['story_id']}}" title="comments"><a
+                                                    href="">{{count($chuck['comments'])}} comment</a></span>
+                                        @else
+                                            &nbsp;|&nbsp;<span class="comments_{{$chuck['story_id']}}" title="comments"><a
+                                                    href="">{{count($chuck['comments'])}} comments</a></span>
+                                        @endif
+                                    @endif
                             </span>
                             </td>
                         </tr>

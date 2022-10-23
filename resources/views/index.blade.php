@@ -15,7 +15,7 @@
                                 <span class="rank">{{$key+1}}.&nbsp;</span>
                             </td>
                             <td class="title">
-                                <span class="titleline">{{$chuck['title']}}</span>
+                                <span class="titleline"><a href="{{$chuck['url'][0]}}">{{$chuck['title']}}</a></span>
                             </td>
                         </tr>
                         <tr>
@@ -23,13 +23,24 @@
                             <td class="subtext">
                             <span class="subline">
                                 @if($chuck['score'] === 1)
-                                    <span class="score" id="score_{{$chuck['story_id']}}">{{$chuck['score']}} point</span>
+                                    <span class="score"
+                                          id="score_{{$chuck['story_id']}}">{{$chuck['score']}} point</span>
                                 @else
-                                    <span class="score" id="score_{{$chuck['story_id']}}">{{$chuck['score']}} points</span>
+                                    <span class="score"
+                                          id="score_{{$chuck['story_id']}}">{{$chuck['score']}} points</span>
                                 @endif
 
                                 by <a class="hnuser">{{$chuck['by']}}</a>
                                 <span class="age" title="{{$chuck['time']}}"><a>{{$chuck['time']}}</a></span>
+                                    @if($chuck['comments'])
+                                    @if(count($chuck['comments']) === 1)
+                                        &nbsp;|&nbsp;<span class="comments_{{$chuck['story_id']}}" title="comments"><a
+                                                href="">{{count($chuck['comments'])}} comment</a></span>
+                                    @else
+                                        &nbsp;|&nbsp;<span class="comments_{{$chuck['story_id']}}" title="comments"><a
+                                                href="">{{count($chuck['comments'])}} comments</a></span>
+                                    @endif
+                                @endif
                             </span>
                             </td>
                         </tr>
