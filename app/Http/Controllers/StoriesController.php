@@ -17,11 +17,11 @@ ini_set('max_execution_time', 10000);
 class StoriesController extends Controller
 {
     //define constant variables
-    const BASE_URL = "https://hacker-news.firebaseio.com/v0/";
+    public const BASE_URL = "https://hacker-news.firebaseio.com/v0/";
     const TOP_STORIES_URL = "topstories.json";
     const NEW_STORIES_URL = "newstories.json";
     #const BEST_STORIES_URL = "beststories.json";
-    const ITEM_URL = "item/";
+    public const ITEM_URL = "item/";
 
 
     public function createTopStories()

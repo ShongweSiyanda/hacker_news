@@ -12,15 +12,10 @@ use Illuminate\Support\Collection;
 use Exception;
 use Illuminate\Support\Facades\Http;
 
-ini_set('max_execution_time', 10000);
+ini_set('max_execution_time', 0);
 
 class CommentsController extends Controller
 {
-    //define constant variables
-    const BASE_URL = "https://hacker-news.firebaseio.com/v0/";
-    const ITEM_URL = "item/";
-
-
     /**
      * Pulls a collection of comments IDs from the stories db table
      * @return array|Collection
@@ -28,8 +23,13 @@ class CommentsController extends Controller
      */
     public function getCommentsID(): array|Collection
     {
-        $all_comments_ids = array();
-        $res = DB::table('stories')->select('comments')->get();
+        try {
+            $all_comments_ids = array();
+            $res = DB::table('stories')->select('comments')->whereNotNull('comments')->get();
+        }
+        catch (Exception $x){
+            dd($x);
+        }
 
         foreach ($res as $key => $col) {
             foreach ($col as $field) {
@@ -59,7 +59,7 @@ class CommentsController extends Controller
 
         foreach ($comments_id as $id) {
             try {
-                $comments_list = Http::get(self::BASE_URL . self::ITEM_URL . $id . ".json");
+                $comments_list = Http::get(new StoriesController::BASE_URL . new StoriesController::ITEM_URL . $id . ".json");
                 $comments_list = json_decode($comments_list);
                 $all_comments[] = (array)$comments_list;
             } catch (Exception $exception) {
@@ -82,7 +82,7 @@ class CommentsController extends Controller
         foreach ($data as $comment) :
             $obj_comm = new Comments();
             try {
-                if (DB::table('comments')->where('comment_id', $comment['id'])->exists() !== true){
+                if (DB::table('comments')->where('comment_id', $comment['id'])->exists() !== true) {
                     $obj_comm->comment_id = $comment['id'];
                     $obj_comm->story_id = $comment['parent'];
 
@@ -92,7 +92,10 @@ class CommentsController extends Controller
 
                     $obj_comm->time = (new StoriesController)->convertUnixTime($comment['time']);
                     $obj_comm->type = $comment['type'];
-                    $obj_comm->text = (array)$comment['text'];
+
+                    if (array_key_exists('text', $comment)):
+                        $obj_comm->text = (array)$comment['text'];
+                    endif;
 
                     $obj_comm->save();
                 }
@@ -112,7 +115,7 @@ class CommentsController extends Controller
     {
         $id = $request->id;
         try {
-            $story_comments = Comments::where('story_id',$id)->get();
+            $story_comments = Comments::where('story_id', $id)->get();
         } catch (Exception $exception) {
             dd($exception);
         }

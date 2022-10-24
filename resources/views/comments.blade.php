@@ -25,7 +25,9 @@
                             <td colspan="1"></td>
                             <td class="subtext">
                             <span class="subline">
+                                @if($chunk['by'])
                                 by <a class="hnuser">{{$chuck['by']}}</a>
+                                @endif
                                 <span class="age" title="{{$chuck['time']}}"><a>{{$chuck['time']}}</a></span>
                             </span>
                             </td>
