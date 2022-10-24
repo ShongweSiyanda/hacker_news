@@ -17,11 +17,11 @@ ini_set('max_execution_time', 10000);
 class StoriesController extends Controller
 {
     //define constant variables
-    const BASE_URL = "https://hacker-news.firebaseio.com/v0";
-    const TOP_STORIES_URL = "/topstories.json";
-    const NEW_STORIES_URL = "/newstories.json";
-    const BEST_STORIES_URL = "/beststories.json";
-    const ITEM_URL = "/item/";
+    const BASE_URL = "https://hacker-news.firebaseio.com/v0/";
+    const TOP_STORIES_URL = "topstories.json";
+    const NEW_STORIES_URL = "newstories.json";
+    #const BEST_STORIES_URL = "beststories.json";
+    const ITEM_URL = "item/";
 
 
     public function createTopStories()
@@ -44,8 +44,9 @@ class StoriesController extends Controller
     }
 
     /**
+     * Pulls the best stories from the db sorting by score in descending
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
-     * DB query results of the best stories, sorted by score in descending order
+     * Best stories results
      */
     public function showBestStories(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
     {
@@ -58,8 +59,9 @@ class StoriesController extends Controller
     }
 
     /**
+     * Pulls all new stories from the db sorting by date in descending order
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
-     * DB query results of new stories in a view, sorted by date in descending order
+     * Query results to the view
      */
     public function showNewStories(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
     {
@@ -72,9 +74,10 @@ class StoriesController extends Controller
     }
 
     /**
+     * Saves all the stories into a DB table
      * @param $url
      * @return void
-     * Throws an exception upon failure to push data to DB table
+     * Throws an exception upon failure
      */
     public function store($url): void
     {
@@ -129,6 +132,7 @@ class StoriesController extends Controller
     }
 
     /**
+     * Gets all the stories using the array of ID's returned by the getIDs method
      * @param $url
      * @return array
      * All top/new stories
@@ -152,19 +156,21 @@ class StoriesController extends Controller
     }
 
     /**
+     * Converts Unix time to datetime
      * @param $time
      * @return false|string
-     * Time in Datetime format
+     * Time in datetime format
      */
-    private function convertUnixTime($time): bool|string
+    public function convertUnixTime($time): bool|string
     {
         return date("Y-m-d H:i:s", $time);
     }
 
     /**
+     * Gets all the story ids
      * @param $url
      * @return array
-     * Stories ID's
+     * stories ID
      */
     private function getIDs($url): array
     {
