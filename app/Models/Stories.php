@@ -14,7 +14,6 @@ class Stories extends Model
         'time',
         'score',
         'title',
-        'category',
         'url',
         'comments'
     ];

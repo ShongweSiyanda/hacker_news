@@ -15,7 +15,12 @@
                                 <span class="rank">{{$key+1}}.&nbsp;</span>
                             </td>
                             <td class="title">
-                                <span class="titleline"><a href="{{$chuck['url'][0]}}">{{$chuck['title']}}</a></span>
+                                @if(array_key_exists('url',(array)$chuck))
+                                    <span class="titleline"><a href="{{$chuck['url'][0]}}">{{$chuck['title']}}</a></span>
+                                @else
+                                    <span class="titleline"><a href="">{{$chuck['title']}}</a></span>
+                                @endif
+
                             </td>
                         </tr>
                         <tr>
@@ -49,6 +54,7 @@
                     <tr class="spacer-bottom"></tr>
                     </tbody>
                 </table>
+                {{$all_stories_feed->links()}}
             </div>
         </div>
     </div>

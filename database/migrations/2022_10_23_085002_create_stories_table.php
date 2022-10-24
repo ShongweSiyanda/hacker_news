@@ -20,8 +20,7 @@ return new class extends Migration
             $table->dateTime('time');
             $table->integer('score');
             $table->text('title');
-            $table->text('category')->nullable();
-            $table->text('url');
+            $table->text('url')->nullable();
             $table->text('comments')->nullable();
             $table->timestamps();
         });

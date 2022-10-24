@@ -1,5 +1,5 @@
-.titleline{
-    color:#000;
+.titleline a{
+    color:#000!important;
 }
 table{
     background: #f6f6ef;
@@ -17,6 +17,13 @@ table{
     font-size: 10pt;
     color: #828282;
     overflow: hidden;
+}
+.votearrow {
+    width: 10px;
+    height: 10px;
+    border: 0px;
+    margin: 3px 2px 6px;
+    background: url("grayarrow.gif") no-repeat;
 }
 table a{
     text-decoration: none;

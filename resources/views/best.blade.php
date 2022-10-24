@@ -9,13 +9,18 @@
                 <table class="itemlist" cellpadding="0" cellspacing="0" border="0">
                     <tbody>
                     <tr class="spacer-top"></tr>
-                    @foreach($results as $key=>$chuck)
+                    @foreach($best_stories_feed as $key=>$chuck)
                         <tr id="{{$chuck['story_id']}}" class="athing">
                             <td class="title" valign="top" align="right">
                                 <span class="rank">{{$key+1}}.&nbsp;</span>
                             </td>
                             <td class="title">
-                                <span class="titleline">{{$chuck['title']}}</span>
+                                @if(array_key_exists('url',(array)$chuck))
+                                    <span class="titleline"><a href="{{$chuck['url'][0]}}">{{$chuck['title']}}</a></span>
+                                @else
+                                    <span class="titleline"><a href="">{{$chuck['title']}}</a></span>
+                                @endif
+
                             </td>
                         </tr>
                         <tr>
@@ -47,6 +52,7 @@
                     <tr class="spacer-bottom"></tr>
                     </tbody>
                 </table>
+                {{$best_stories_feed->links()}}
             </div>
         </div>
     </div>
