@@ -23,3 +23,7 @@ Route::get('/new','App\Http\Controllers\StoriesController@showNewStories');
 Route::get('/best','App\Http\Controllers\StoriesController@showBestStories');
 Route::get('/top','App\Http\Controllers\StoriesController@showTopStories');
 //Route::get('/','App\Http\Controllers\StoriesController@displayAllStories');
+
+
+Route::get('/create-comments','App\Http\Controllers\CommentsController@storeComments');
+Route::get('/details/{id}','App\Http\Controllers\CommentsController@showComments');
