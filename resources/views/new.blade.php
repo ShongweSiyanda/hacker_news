@@ -15,7 +15,7 @@
                                 <span class="rank">{{$key+1}}.&nbsp;</span>
                             </td>
                             <td class="title">
-                                @if(array_key_exists('url',(array)$chuck))
+                                @if($chuck['url'])
                                     <span class="titleline"><a href="{{$chuck['url'][0]}}">{{$chuck['title']}}</a></span>
                                 @else
                                     <span class="titleline"><a href="">{{$chuck['title']}}</a></span>
@@ -38,10 +38,10 @@
                                 @if($chuck['comments'])
                                         @if(count($chuck['comments']) === 1)
                                             &nbsp;|&nbsp;<span class="comments_{{$chuck['story_id']}}" title="comments"><a
-                                                    href="">{{count($chuck['comments'])}} comment</a></span>
+                                                    href="details/{{$chuck['story_id']}}">{{count($chuck['comments'])}} comment</a></span>
                                         @else
                                             &nbsp;|&nbsp;<span class="comments_{{$chuck['story_id']}}" title="comments"><a
-                                                    href="">{{count($chuck['comments'])}} comments</a></span>
+                                                    href="details/{{$chuck['story_id']}}">{{count($chuck['comments'])}} comments</a></span>
                                         @endif
                                     @endif
                             </span>
